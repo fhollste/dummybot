@@ -1,0 +1,22 @@
+service: salibandyliito
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+#  profile: default
+  memorySize: 512
+  timeout: 30
+#  region: us-east-1
+
+package:
+  exclude:
+    - test/**
+    - .git/**
+
+functions:
+  tweet:
+    handler: handler.tweet
+    events:
+      - schedule: rate(18 minutes)
+
